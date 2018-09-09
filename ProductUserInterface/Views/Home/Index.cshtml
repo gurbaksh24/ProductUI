@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Travel and Book Products</h1>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Login</h2>
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("User id")</td>
+                    <td>@Html.TextBox("userid")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Password")</td>
+                    <td>@Html.Password("pass")</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Login" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        }  
+        @TempData["Error"]
+    </div>
+</div>
