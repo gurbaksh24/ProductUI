@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "PostDataToApi";
+}
+<div class="row">
+    <div class="col-md-4">
+        <h2>Add Data</h2>
+        @using (Html.BeginForm("AddData", "Activity", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("Activity Name")</td>
+                    <td>@Html.TextBox("activityname")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Price")</td>
+                    <td>@Html.TextBox("price")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Activity Category")</td>
+                    <td>@Html.TextBox("category")</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                    <td></td>
+            </table>
+        }
+        @TempData["response"]
+    </div>
+</div>
+
+<h2>GetAllActivities</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Activity Id</th>
+            <th>Activity Name</th>
+            <th>Activity Price</th>
+            <th>Activity Category</th>
+            <th>Is Saved</th>
+            <th>Is Booked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ActivityId</td>
+                <td>@item.ActivityName</td>
+                <td>@item.ActivityPrice</td>
+                <td>@item.ActivityCategory</td>
+                <td>@item.IsSaved</td>
+                <td>@item.IsBooked</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,122 @@
+﻿@model IList<ProductUserInterface.Models.Air>
+@{
+    ViewBag.Title = "GetAllAirs";
+}
+
+<h2>Air</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Air Id</th>
+            <th>Air Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Price</th>
+            <th>Save Here</th>
+            <th>Book Here</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AirId</td>
+                <td>@item.AirName</td>
+                <td>@item.Source</td>
+                <td>@item.Destination</td>
+                <td>@item.Class</td>
+                <td>@item.AirPrice</td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateSave", "Air", FormMethod.Post))
+                        {
+                            @Html.Hidden("save", item.AirId);
+                            <input type="submit" value="Save" />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateBook", "Air", FormMethod.Post))
+                        {
+                            @Html.Hidden("book", item.AirId);
+                            <input type="submit" value="Book" />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Saved Items</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Air Id</th>
+            <th>Air Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Price</th>
+            <th>Book Here</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsSaved.Equals("true") && item.IsBooked.Equals("false"))
+            {
+                <tr>
+                    <td>@item.AirId</td>
+                    <td>@item.AirName</td>
+                    <td>@item.Source</td>
+                    <td>@item.Destination</td>
+                    <td>@item.Class</td>
+                    <td>@item.AirPrice</td>
+                    <td>
+                        @{
+                            using (Html.BeginForm("UpdateBook", "Air", FormMethod.Post))
+                            {
+                                @Html.Hidden("book", item.AirId);
+                                <input type="submit" value="Book" />
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h2>Booked Items</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Air Id</th>
+            <th>Air Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (@item.IsBooked.Equals("true"))
+            {
+                <tr>
+                    <td>@item.AirId</td>
+                    <td>@item.AirName</td>
+                    <td>@item.Source</td>
+                    <td>@item.Destination</td>
+                    <td>@item.Class</td>
+                    <td>@item.AirPrice</td>
+                    
+                </tr>
+            }
+        }
+    </tbody>
+</table>

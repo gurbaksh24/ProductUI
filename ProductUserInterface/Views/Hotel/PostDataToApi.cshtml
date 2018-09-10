@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "PostDataToApi";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Add Data</h2>
+        @using (Html.BeginForm("AddData", "Hotel", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("Hotel Name")</td>
+                    <td>@Html.TextBox("hotelname")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("City")</td>
+                    <td>@Html.TextBox("city")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Available Rooms")</td>
+                    <td>@Html.TextBox("rooms")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Price")</td>
+                    <td>@Html.TextBox("price")</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                    <td></td>
+            </table>
+        }
+        @TempData["response"]
+    </div>
+</div>
+
+<h2>Hotel</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Hotel Id</th>
+            <th>Hotel Name</th>
+            <th>City</th>
+            <th>Available Rooms</th>
+            <th>Price</th>
+            <th>IsSaved</th>
+            <th>IsBooked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.HotelId</td>
+                <td>@item.HotelName</td>
+                <td>@item.City</td>
+                <td>@item.AvailableRooms</td>
+                <td>@item.Price</td>
+                <td>@item.IsSaved</td>
+                <td>@item.IsBooked</td>
+            </tr>
+        }
+    </tbody>
+</table>

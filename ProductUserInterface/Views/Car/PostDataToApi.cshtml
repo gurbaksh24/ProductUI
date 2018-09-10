@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "PostDataToApi";
+}
+<div class="row">
+    <div class="col-md-4">
+        <h2>Add Data</h2>
+        @using (Html.BeginForm("AddData", "Car", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("Car Name")</td>
+                    <td>@Html.TextBox("carname")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Car Model")</td>
+                    <td>@Html.TextBox("carmodel")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Car Brand")</td>
+                    <td>@Html.TextBox("carbrand")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Car Color")</td>
+                    <td>@Html.TextBox("carcolor")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Car Price")</td>
+                    <td>@Html.TextBox("price")</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                    <td></td>
+            </table>
+        }
+        @TempData["response"]
+    </div>
+</div>
+
+<h2>Car</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car Name</th>
+            <th>Car Model</th>
+            <th>Car Brand</th>
+            <th>Car Color</th>
+            <th>Price</th>
+            <th>IsSaved</th>
+            <th>IsBooked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CarId</td>
+                <td>@item.CarName</td>
+                <td>@item.CarModel</td>
+                <td>@item.CarBrand</td>
+                <td>@item.CarColor</td>
+                <td>@item.CarPrice</td>
+                <td>@item.IsSaved</td>
+                <td>@item.IsBooked</td>
+            </tr>
+        }
+    </tbody>
+</table>

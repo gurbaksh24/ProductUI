@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductUserInterface.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,10 +38,10 @@ namespace ProductUserInterface.Controllers
         {
             return View();
         }
-        public ActionResult Activity()
-        {
-            return View();
-        }
+        //public ActionResult Activity()
+        //{
+            
+        //}
         public ActionResult Air()
         {
             return View();

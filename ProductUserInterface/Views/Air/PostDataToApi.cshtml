@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "PostDataToApi";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Add Data</h2>
+        @using (Html.BeginForm("AddData", "Air", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("Air Name")</td>
+                    <td>@Html.TextBox("airname")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Source")</td>
+                    <td>@Html.TextBox("source")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Destination")</td>
+                    <td>@Html.TextBox("destination")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Class")</td>
+                    <td>@Html.TextBox("class")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Air Price")</td>
+                    <td>@Html.TextBox("price")</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                    <td></td>
+            </table>
+        }
+        @TempData["response"]
+    </div>
+</div>
+
+<h2>Air</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Air Id</th>
+            <th>Air Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Price</th>
+            <th>IsSaved</th>
+            <th>IsBooked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AirId</td>
+                <td>@item.AirName</td>
+                <td>@item.Source</td>
+                <td>@item.Destination</td>
+                <td>@item.Class</td>
+                <td>@item.AirPrice</td>
+                <td>@item.IsSaved</td>
+                <td>@item.IsBooked</td>
+            </tr>
+        }
+    </tbody>
+</table>
