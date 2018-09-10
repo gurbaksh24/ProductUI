@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Activity";
+}
+
+<h2>Activity</h2>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.Label("User id")</td>
+            <td>@Html.TextBox("userid")</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Password")</td>
+            <td>@Html.Password("pass")</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+@TempData["Error"]
+    </div>

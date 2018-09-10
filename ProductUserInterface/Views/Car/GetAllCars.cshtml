@@ -1,0 +1,122 @@
+﻿@model IList<ProductUserInterface.Models.Car>
+@{
+    ViewBag.Title = "GetAllCars";
+}
+
+<h2>Car</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car Name</th>
+            <th>Car Model</th>
+            <th>Car Brand</th>
+            <th>Car Color</th>
+            <th>Price</th>
+            <th>Save Here</th>
+            <th>Book Here</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CarId</td>
+                <td>@item.CarName</td>
+                <td>@item.CarModel</td>
+                <td>@item.CarBrand</td>
+                <td>@item.CarColor</td>
+                <td>@item.CarPrice</td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateSave", "Car", FormMethod.Post))
+                        {
+                            @Html.Hidden("save", item.CarId);
+                            <input type="submit" value="Save" />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateBook", "Car", FormMethod.Post))
+                        {
+                            @Html.Hidden("book", item.CarId);
+                            <input type="submit" value="Book" />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Car</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car Name</th>
+            <th>Car Model</th>
+            <th>Car Brand</th>
+            <th>Car Color</th>
+            <th>Price</th>
+            <th>Book Here</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsSaved.Equals("true") && item.IsBooked.Equals("false"))
+            {
+                <tr>
+                    <td>@item.CarId</td>
+                    <td>@item.CarName</td>
+                    <td>@item.CarModel</td>
+                    <td>@item.CarBrand</td>
+                    <td>@item.CarColor</td>
+                    <td>@item.CarPrice</td>
+                    <td>
+                        @{
+                            using (Html.BeginForm("UpdateBook", "Car", FormMethod.Post))
+                            {
+                                @Html.Hidden("book", item.CarId);
+                                <input type="submit" value="Book" />
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+<h2>Car</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car Name</th>
+            <th>Car Model</th>
+            <th>Car Brand</th>
+            <th>Car Color</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsBooked.Equals("true"))
+            {
+            <tr>
+                <td>@item.CarId</td>
+                <td>@item.CarName</td>
+                <td>@item.CarModel</td>
+                <td>@item.CarBrand</td>
+                <td>@item.CarColor</td>
+                <td>@item.CarPrice</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

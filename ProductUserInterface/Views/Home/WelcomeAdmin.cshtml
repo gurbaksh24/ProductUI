@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "WelcomeAdmin";
+}
+<div class="jumbotron">
+    <h1>Travel and Book Products</h1>
+</div>
+<h2>Choose a Product</h2>
+<div class="row">
+    <div class="col-md-3">
+        @using (Html.BeginForm("PostDataToApi", "Activity", FormMethod.Post))
+        {
+            <button class="btn btn-success">Activity</button>
+        }
+        </div>
+    <div class="col-md-3">
+        @using (Html.BeginForm("PostDataToApi", "Air", FormMethod.Post))
+        {
+            <button class="btn btn-success">Air</button>
+        }
+        </div>
+
+    <div class="col-md-3">
+        @using (Html.BeginForm("PostDataToApi", "Car", FormMethod.Post))
+        {
+            <button class="btn btn-success">Car</button>
+        }
+        </div>
+    <div class="col-md-3">
+        @using (Html.BeginForm("PostDataToApi", "Hotel", FormMethod.Post))
+        {
+            <button class="btn btn-success">Hotel</button>
+        }
+        </div>
+</div>
+

@@ -1,0 +1,107 @@
+﻿@model IList<ProductUserInterface.Models.Activity>
+@{
+    ViewBag.Title = "GetAllActivities";
+}
+
+<h2>GetAllActivities</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Activity Id</th>
+            <th>Activity Name</th>
+            <th>Activity Price</th>
+            <th>Activity Category</th>
+            <th>Is Saved</th>
+            <th>Is Booked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ActivityId</td>
+                <td>@item.ActivityName</td>
+                <td>@item.ActivityPrice</td>
+                <td>@item.ActivityCategory</td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateSave", "Activity", FormMethod.Post))
+                        {
+                            @Html.Hidden("save", item.ActivityId);
+                            <input type="submit" value="Save" />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        using (Html.BeginForm("UpdateBook", "Activity", FormMethod.Post))
+                        {
+                            @Html.Hidden("book", item.ActivityId);
+                            <input type="submit" value="Book" />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h2>Saved Items</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Activity Id</th>
+            <th>Activity Name</th>
+            <th>Activity Price</th>
+            <th>Activity Category</th>
+            <th>Book Here</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (@item.IsSaved.Equals("true") && @item.IsBooked.Equals("false"))
+            {
+                <tr>
+                    <td>@item.ActivityId</td>
+                    <td>@item.ActivityName</td>
+                    <td>@item.ActivityPrice</td>
+                    <td>@item.ActivityCategory</td>
+                    <td>
+                        @{
+                            using (Html.BeginForm("UpdateBook", "Activity", FormMethod.Post))
+                            {
+                                @Html.Hidden("book", item.ActivityId);
+                                <input type="submit" value="Book" />
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<h2>Booked Items</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Activity Id</th>
+            <th>Activity Name</th>
+            <th>Activity Price</th>
+            <th>Activity Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (@item.IsBooked.Equals("true"))
+            {
+                <tr>
+                    <td>@item.ActivityId</td>
+                    <td>@item.ActivityName</td>
+                    <td>@item.ActivityPrice</td>
+                    <td>@item.ActivityCategory</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
